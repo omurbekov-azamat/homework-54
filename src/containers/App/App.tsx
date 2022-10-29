@@ -1,7 +1,6 @@
 import Box from "../../components/Box/Box";
-import './App.css';
 import {useState} from "react";
-
+import Boxes from "../../components/Boxes/Boxes";
 
 function App() {
 
@@ -23,10 +22,9 @@ function App() {
 
   const [boxes, setBoxes] = useState<Box[]>(getBoxes());
 
-  console.log(boxes)
-
   return (
-    <div className="App">
+    <div>
+      <Boxes boxes={boxes}/>
     </div>
   );
 }

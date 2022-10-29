@@ -1,0 +1,14 @@
+.boxes{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.Box {
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    background: gray;
+}
