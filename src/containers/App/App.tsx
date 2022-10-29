@@ -22,9 +22,20 @@ function App() {
 
   const [boxes, setBoxes] = useState<Box[]>(getBoxes());
 
+  const clicked = (index:number) => {
+    const boxesCopy = [...boxes];
+    const boxCopy = {...boxes[index]};
+    boxCopy.clicked = true;
+    boxesCopy[index] = boxCopy;
+    setBoxes(boxesCopy);
+  };
+  console.log(boxes)
+
   return (
     <div>
-      <Boxes boxes={boxes}/>
+      <Boxes boxes={boxes}
+             clicked={clicked}
+      />
     </div>
   );
 }
