@@ -1,28 +1,28 @@
 .boxes{
     display: flex;
     flex-wrap: wrap;
-    max-width: 1300px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 15px;
 }
 
 .Box-grey{
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     margin: 5px;
     background: gray;
 }
 
 .Box-white{
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     margin: 5px;
     background: white;
 }
 
 .hasItem-show{
     display: block;
-    font-size: 200px;
+    font-size: 100px;
 }
 .hasItem-none{
     display: none;

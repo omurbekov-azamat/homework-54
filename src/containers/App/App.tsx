@@ -1,6 +1,8 @@
 import Box from "../../components/Box/Box";
 import {useState} from "react";
 import Boxes from "../../components/Boxes/Boxes";
+import Counter from "../../components/Counter/Counter";
+import Button from "../../components/ButtonReset/Button";
 
 function App() {
 
@@ -22,6 +24,8 @@ function App() {
 
   const [boxes, setBoxes] = useState<Box[]>(getBoxes());
 
+  let click:boolean[] = [];
+
   const clicked = (index:number) => {
     const boxesCopy = [...boxes];
     const boxCopy = {...boxes[index]};
@@ -29,13 +33,27 @@ function App() {
     boxesCopy[index] = boxCopy;
     setBoxes(boxesCopy);
   };
-  console.log(boxes)
+
+
+  const countClicked = () => {
+    for (let i = 0; i < boxes.length; i++) {
+      if(boxes[i].clicked === true) {
+        click.push(boxes[i].clicked);
+      }
+    }
+  };
+
+  countClicked()
+
+  const reset = () => {
+    setBoxes(getBoxes)
+  };
 
   return (
     <div>
-      <Boxes boxes={boxes}
-             clicked={clicked}
-      />
+      <Boxes boxes={boxes} clicked={clicked}/>
+      <Counter clickCount={click.length}/>
+      <Button reset={reset}/>
     </div>
   );
 }
