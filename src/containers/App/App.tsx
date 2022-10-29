@@ -1,5 +1,6 @@
 import Box from "../../components/Box/Box";
 import './App.css';
+import {useState} from "react";
 
 
 function App() {
@@ -8,18 +9,22 @@ function App() {
     const boxes: Box[] = [];
 
     for (let i = 0; i < 36; i++) {
-      const box2:Box = {
+      const box:Box = {
         hasItem: false,
         clicked: false,
       };
-      boxes.push(box2);
+      boxes.push(box);
     }
 
     const random = Math.floor(Math.random() * boxes.length);
     boxes[random].hasItem = true;
-    console.log(boxes)
-  }
-  getBoxes();
+    return boxes;
+  };
+
+  const [boxes, setBoxes] = useState<Box[]>(getBoxes());
+
+  console.log(boxes)
+
   return (
     <div className="App">
     </div>
