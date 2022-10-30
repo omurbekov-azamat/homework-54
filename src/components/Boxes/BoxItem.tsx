@@ -1,5 +1,5 @@
 import React from 'react';
-import './box.css'
+import './Box.css'
 
 interface BoxProps {
   hasItem: boolean;
@@ -13,14 +13,15 @@ const BoxItem:React.FC<BoxProps> = props => {
   if (props.clicked === true) {
      className = 'Box-white';
   } else {
-    className = 'Box-grey'
+    className = 'Box-grey';
   }
+
   let classNameHasItem;
 
   if (props.hasItem === true && props.clicked === true) {
-    classNameHasItem = 'hasItem-show'
+    classNameHasItem = 'hasItem-show';
   } else {
-    classNameHasItem = 'hasItem-none'
+    classNameHasItem = 'hasItem-none';
   }
   return (
     <div onClick={props.onHeaderClick} className={className}>

@@ -1,5 +1,5 @@
-import Box from "../../components/Box/Box";
 import {useState} from "react";
+import {Character} from "../../types";
 import Boxes from "../../components/Boxes/Boxes";
 import Counter from "../../components/Counter/Counter";
 import Button from "../../components/ButtonReset/Button";
@@ -7,10 +7,10 @@ import Button from "../../components/ButtonReset/Button";
 function App() {
 
   const getBoxes = () => {
-    const boxes: Box[] = [];
+    const boxes: Character[] = [];
 
     for (let i = 0; i < 36; i++) {
-      const box:Box = {
+      const box:Character = {
         hasItem: false,
         clicked: false,
       };
@@ -22,7 +22,7 @@ function App() {
     return boxes;
   };
 
-  const [boxes, setBoxes] = useState<Box[]>(getBoxes());
+  const [boxes, setBoxes] = useState<Character[]>(getBoxes());
 
   let click:boolean[] = [];
 
@@ -34,7 +34,6 @@ function App() {
     setBoxes(boxesCopy);
   };
 
-
   const countClicked = () => {
     for (let i = 0; i < boxes.length; i++) {
       if(boxes[i].clicked === true) {
@@ -43,18 +42,18 @@ function App() {
     }
   };
 
-  countClicked()
+  countClicked();
 
   const reset = () => {
     setBoxes(getBoxes)
   };
 
   return (
-    <div>
+    <>
       <Boxes boxes={boxes} clicked={clicked}/>
       <Counter clickCount={click.length}/>
       <Button reset={reset}/>
-    </div>
+    </>
   );
 }
 

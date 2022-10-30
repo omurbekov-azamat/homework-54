@@ -1,7 +1,7 @@
 import React from 'react';
 import {Character} from "../../types";
 import BoxItem from "./BoxItem";
-import './box.css';
+import './Box.css';
 
 interface Props {
   boxes: Character[];
