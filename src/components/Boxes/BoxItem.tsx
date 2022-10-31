@@ -4,13 +4,14 @@ import './Box.css'
 interface BoxProps {
   hasItem: boolean;
   clicked: boolean;
+  game:boolean;
   onHeaderClick: React.MouseEventHandler;
 }
 
 const BoxItem:React.FC<BoxProps> = props => {
   let className;
 
-  if (props.clicked === true) {
+  if (props.clicked === true && props.game === true) {
      className = 'Box-white';
   } else {
     className = 'Box-grey';
@@ -23,10 +24,11 @@ const BoxItem:React.FC<BoxProps> = props => {
   } else {
     classNameHasItem = 'hasItem-none';
   }
+
   return (
-    <div onClick={props.onHeaderClick} className={className}>
-      <span className={classNameHasItem}>0</span>
-    </div>
+      <div onClick={props.onHeaderClick} className={className}>
+        <span className={classNameHasItem}>0</span>
+      </div>
   );
 };
 

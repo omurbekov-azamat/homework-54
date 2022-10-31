@@ -3,6 +3,8 @@ import {Character} from "../../types";
 import Boxes from "../../components/Boxes/Boxes";
 import Counter from "../../components/Counter/Counter";
 import Button from "../../components/ButtonReset/Button";
+import FinishGame from "../../components/FinishGame/FinishGame";
+import './App.css'
 
 function App() {
 
@@ -10,9 +12,10 @@ function App() {
     const boxes: Character[] = [];
 
     for (let i = 0; i < 36; i++) {
-      const box:Character = {
+      const box: Character = {
         hasItem: false,
         clicked: false,
+        game: true,
       };
       boxes.push(box);
     }
@@ -23,24 +26,36 @@ function App() {
   };
 
   const [boxes, setBoxes] = useState<Character[]>(getBoxes());
+  let click: boolean[] = [];
 
-  let click:boolean[] = [];
-
-  const clicked = (index:number) => {
+  const clicked = (index: number) => {
     const boxesCopy = [...boxes];
     const boxCopy = {...boxes[index]};
     boxCopy.clicked = true;
     boxesCopy[index] = boxCopy;
     setBoxes(boxesCopy);
+    if (boxCopy.hasItem === true) {
+      for (let i = 0; i < boxes.length; i++){
+          boxes[i].game = false;
+      }
+    }
   };
 
   const countClicked = () => {
     for (let i = 0; i < boxes.length; i++) {
-      if(boxes[i].clicked === true) {
+      if (boxes[i].clicked === true && boxes[i].game === true) {
         click.push(boxes[i].clicked);
       }
     }
   };
+
+  const finishGame = () => {
+    for (let i = 0; i < boxes.length; i++) {
+      if (boxes[i].game === false) {
+        return 'Bravo, you found! Total tries: ' + click.length;
+      }
+    }
+  }
 
   countClicked();
 
@@ -49,11 +64,14 @@ function App() {
   };
 
   return (
-    <>
+    <div className='container'>
       <Boxes boxes={boxes} clicked={clicked}/>
-      <Counter clickCount={click.length}/>
-      <Button reset={reset}/>
-    </>
+      <div className='ride-side'>
+        <Counter clickCount={click.length}/>
+        <Button reset={reset}/>
+        <FinishGame getFinishGame={finishGame()}/>
+      </div>
+    </div>
   );
 }
 

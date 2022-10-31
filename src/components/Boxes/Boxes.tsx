@@ -17,6 +17,7 @@ const Boxes: React.FC<Props> = ({boxes,clicked}) => {
           onHeaderClick={() => clicked(index)}
           clicked={boxItem.clicked}
           hasItem={boxItem.hasItem}
+          game={boxItem.game}
         />
       ))}
     </div>
